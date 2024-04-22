@@ -1,71 +1,34 @@
+
+import { useState } from "react";
 import { Fragment } from "react/jsx-runtime";
+interface ListGruopProps {
+    item: string[];
+    heading: string;
+}
+function ListGroup({cities,heading}: Props) {
+    const [selectedIndex, setSelectedIndex] = useState(-1);
 
-function ListGroup() {
 
-    let cities = [
-        "New York",
-        "Los Angeles",
-        "Chicago",
-        "Houston",
-        "Phoenix",
-        "Philadelphia",
-        "San Antonio",
-        "San Diego",
-        "Dallas",
-        "San Jose",
-        "Austin",
-        "Jacksonville",
-        "San Francisco",
-        "Indianapolis",
-        "Columbus",
-        "Fort Worth",
-        "Charlotte",
-        "Seattle",
-        "Denver",
-        "Washington",
-        "Boston",
-        "El Paso",
-        "Nashville",
-        "Detroit",
-        "Oklahoma City",
-        "Portland",
-        "Las Vegas",
-        "Memphis",
-        "Louisville",
-        "Baltimore",
-        "Milwaukee",
-        "Albuquerque",
-        "Tucson",
-        "Fresno",
-        "Sacramento",
-        "Kansas City",
-        "Long Beach",
-        "Mesa",
-        "Atlanta",
-        "Colorado Springs",
-        "Virginia Beach",
-        "Raleigh",
-        "Omaha",
-        "Miami",
-        "Oakland",
-        "Minneapolis",
-        "Tulsa",
-        "Wichita",
-        "New Orleans",
-    ];
-    //  cities = [];
 
     const getMessege = () => {
         return cities.length === 0 ? <p> No cities found</p> : null
     }
+    const handleClick = (event: MouseEvent) => console.log(event);
+
+
 
     return (
         <Fragment>
-            <h1> List Group</h1>
+            <h1> {heading}</h1>
             {getMessege}
-            <ul className="list-group">
-                {cities.map((city) => (
-                    <li className="list-group-item" key={city} onClick={}>   {city}</li>
+            <ul className='list-group'>
+                {cities.map((city, index) => (
+                    <li
+                        className={selectedIndex === index ? 'list-group-item active' : 'list-group-item'}
+                        key={city}
+                        onClick={() => { setSelectedIndex(index); }}
+                    >
+                        {city}</li>
                 ))}
             </ul>
         </Fragment>
